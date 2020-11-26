@@ -2,7 +2,7 @@
 title: "Flow Charts in R"
 author: "Paul"
 date: "25/11/2020"
-output: html_document
+output: rmarkdown::github_document
 ---
 
 ```{r setup, include=FALSE}
