@@ -1,0 +1,129 @@
+---
+title: "Flow Charts in R"
+author: "Paul"
+date: "25/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# R Visualizations: Flow Charts in R
+## part of my "taking advantage of R visualizations" blog series
+
+![Photo by Cris DiNoto on Unsplash](./cris-dinoto-62Phjv4KUdo-unsplash.jpg)
+
+## Introduction
+
+In the field of data analytics, data visualization is the name of the game. I have recently noticed how much I love R over Python for my data visualization needs. Because of this, I have started a small blog series on R visualizations beginning with this blog on flow charts. you can find the blog on my [medium](https://medium.com/@paulaleksis/r-visualizations-flow-charts-in-r-4cfa7f783872).
+
+```{r}
+# install.packages("DiagrammeR") # used to install the package dependencies needed for this blog
+library(DiagrammeR)
+```
+
+Once the library has loaded, we will use the `grViz()` function to setup the bones of our flow chart.
+
+```{r}
+grViz(diagram = "digraph flowchart {
+  node [fontname = arial, shape = oval]
+  tab1 [label = '@@1']
+  tab2 [label = '@@2']
+  tab3 [label = '@@3']
+  
+  tab1 -> tab2 -> tab3;
+}
+  
+  [1]: 'Learning Data Science'
+  [2]: 'Industry vs Technical Knowledge'    
+  [3]: 'Statistics vs Mathematics Knowledge'    
+  ")
+```
+
+Within the syntax, 
+
+
+## Adding Color
+It is also possible to add color to the outline of your nodes, or even fill them with a color. To do so, add additional arguments "color" and "style" to the node section of the syntax as shown below.
+
+```{r}
+grViz(diagram = "digraph flowchart {
+  node [fontname = arial, shape = oval, color = grey, style = filled]
+  tab1 [label = '@@1']
+  tab2 [label = '@@2']
+  tab3 [label = '@@3']
+  
+  tab1 -> tab2 -> tab3;
+}
+  
+  [1]: 'Learning Data Science'
+  [2]: 'Industry vs Technical Knowledge'    
+  [3]: 'Statistics vs Mathematics Knowledge'    
+  ")
+
+```
+
+## Splitting Connection to Multiple Nodes
+
+You are able to split the connection to multiple nodes. To do so just change how your structure your tab argument.
+
+```{r}
+grViz(diagram = "digraph flowchart {
+      # define node aesthetics
+      node [fontname = Arial, shape = oval, color = Lavender, style = filled]        
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+
+      # set up node layout
+      tab1 -> tab2;
+      tab2 -> tab3;
+      tab2 -> tab4
+      }
+
+      [1]: 'Learning Data Science'
+      [2]: 'Industry vs Technical Knowledge'
+      [3]: 'Python/R'
+      [4]: 'Domain Experience'
+      ")
+```
+
+
+## More Customizability
+
+There are some additional arguments you can include in your function to customize things such as font size, font color, height, width, alpha, etc… For more customizability options refer to the [documentation](https://rich-iannone.github.io/DiagrammeR/graphviz_and_mermaid.html) Once you have selected the styles or additions you want, add them as arguments within the `node[]` portion of your function.
+
+```{r}
+grViz(diagram = "digraph flowchart {
+      # define node aesthetics
+      node [fontname = Arial, shape = oval, color = DeepSkyBlue, style = filled, fontcolor = White]        
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+
+      # set up node layout
+      tab1 -> tab2;
+      tab2 -> tab3;
+      tab2 -> tab4
+      }
+
+      [1]: 'Learning Data Science'
+      [2]: 'Industry vs Technical Knowledge'
+      [3]: 'Python/R'
+      [4]: 'Domain Experience'
+      ")
+```
+
+
+
+## Conclusion
+
+Flow charts are a great way to express ideas especially at the beginning stages of production. Consider using R visualizations in your future work and take advantage of its powerful libraries.
+
+### Sources:
+
+https://rich-iannone.github.io/DiagrammeR/docs.html
+
